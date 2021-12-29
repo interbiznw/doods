@@ -197,14 +197,14 @@ See the examples directory for sample clients
 
 ## Docker
 To run the container in docker you need to map port 8080. If you want to update the models, you need to map model files and a config to use them. 
-`docker run -it -p 8080:8080 snowzach/doods:latest`
+`docker run -it -p 8080:8080 interbiznw/doods:latest`
 
 There is a script called `fetch_models.sh` that you can download and run to create a models directory and download several models and outputs an `example.yaml` config file.
-You could then run: `docker run -it -v ./models:/opt/doods/models -v ./example.yaml:/opt/doods/config.yaml -p 8080:8080 snowzach/doods:latest`
+You could then run: `docker run -it -v ./models:/opt/doods/models -v ./example.yaml:/opt/doods/config.yaml -p 8080:8080 interbiznw/doods:latest`
 
 ### Coral EdgeTPU
 If you want to run it in docker using the Coral EdgeTPU, you need to pass the device to the container with: `--device /dev/bus/usb`
-Example: `docker run -it --device /dev/bus/usb -p 8080:8080 snowzach/doods:latest`
+Example: `docker run -it --device /dev/bus/usb -p 8080:8080 interbiznw/doods:latest`
 
 ## Misc
 Special thanks to https://github.com/mattn/go-tflite as I would have never been able to figure out all the CGO stuff. I really wanted to write this in Go but I'm not good enough at C++/CGO to do it. Most of the tflite code is taken from that repo and customized for this tool.
@@ -223,12 +223,12 @@ There are several published Docker images that you can use
 
 ## CUDA Support
 There is now NVidia GPU support with an docker image tagged cuda, to run:
-`docker run -it --gpus all -p 8080:8080 snowzach/doods:cuda`
+`docker run -it --gpus all -p 8080:8080 interbiznw/doods:cuda`
 For whatever reason, it can take a good 60-80 seconds before the model finishes loading.
 
 ## Compiling
 You can compile it yourself using the plain `Dockerfile` which should pick the optimal CPU flags for your architecture. 
-Make the `snowzach/doods:local` image with this command:
+Make the `interbiznw/doods:local` image with this command:
 ```
 $ make libedgetpu
 $ make docker
